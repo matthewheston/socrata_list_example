@@ -1,0 +1,42 @@
+<!DOCTYPE>
+
+<html>
+  <head>
+    <script type="text/javascript" src="lib/jquery-1.6.3.js"></script>
+    <script type="text/javascript" src="lib/jquery.zipper.js"></script>
+    <script type="text/javascript" src="lib/list.js"></script>
+    <script type="text/javascript" src="lib/socrata.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+					var datasetManager = new Socrata.DatasetManager("http://data.cityofchicago.org/Transportation/Towed-Vehicles/ygr5-vcbg");
+					datasetManager.getDataset(function(dataset) {
+						var options = { item: "carItem" };
+						var values = dataset.rows;
+						var list = new List("carList", options, values);
+						});
+					});
+		</script>
+  </head>
+
+  <body style="width: 100%">
+		<div id="carList" style="width:400px; margin: auto">
+			<input type="text" class="search" />
+			<ul class="list" style="list-style-type:none"></ul>
+		</div>
+
+		<div style="display:none;">
+			<li id="carItem" style="width:200px; background-color:#555; color:#EEE; font-family:sans-serif; font-size:75%">
+			<div style = "margin: auto; text-align:center">
+				<p class="Plate"></p>
+				<p class="Make"></p>
+				<p class="Model"></p>
+				<p class="Style"></p>
+				<p class="Color"></p>
+				<p class="State"></p>
+			</div>
+			</li>
+		</div>
+  </body>
+
+</html>
